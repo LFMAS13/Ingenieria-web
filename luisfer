@@ -1,0 +1,21 @@
+<html lang="es">
+    <meta charset="UTF-8">
+    <body>
+        <title>JAMON</title>
+        <h1>JAMON LIBRE</h1>
+        <a href= "LOGIN.html">Login</a>
+        <h2>Venta de articulos de ropa</h2>
+        <pre style="text-align: justify;">
+        Moda juvenil y fresca, con ropa corta perfecta para los días cálidos. <br>
+        Encuentra una variedad de prendas como shorts, faldas, tops y vestidos, diseñadas para brindarte comodidad y estilo en todo momento. <br>
+        Ideal para quienes buscan looks modernos y fáciles de llevar, sin perder la esencia de la moda.</pre>
+
+        <p title="Foto de Gorra">Gorra</p>
+        <img src="gorra.jpg.avif" alt "gorra" width="500" height="600"; style="text-align:left; border:10px solid Violet;">
+        <hr>
+        <h1 style="font-size: 80px;">Continuar</h1>
+        <p>The HTML <br> element defines a line break.
+        Use <br> if you want a line break (a new line)<br> without starting a new paragraph:</p>
+        <pre>Es para darle como formato al texto</pre>
+    </body>
+</html>
