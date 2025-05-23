@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Formulario Login</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        function revisar(){
+            let usuario = document.getElementsByName("usuario")[0].value;
+            let contrasena = document.getElementsByName("contrasena")[0].value;
+            
+            // Expresión regular para validar la contraseña
+            let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+            
+            if (regex.test(contrasena)) {
+                alert('Todo bien');
+            } else {
+                alert('Error: La contraseña debe contener al menos una mayúscula, un número y un carácter especial.');
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <section class="form-login">
+      <h5>Formulario Login</h5>
+      <input class="controls" type="text" name="usuario" value="" placeholder="Usuario">
+      <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña">
+      <button onclick="revisar()">Ingresar</button>
+      <p><a href="#">¿Olvidaste tu Contraseña?</a></p>
+      <p><a href="#">Registrar</a></p>
+    </section>
+  </body>
+</html>
