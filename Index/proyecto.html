@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>JAMON</title>
+    <style>
+      table, th, td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JAMON LIBRE</h1>
+    <a href="LOGIN.html">Login</a>
+    <h2>Venta de artículos de ropa</h2>
+    <pre style="text-align: justify;">
+Moda juvenil y fresca, con ropa corta perfecta para los días cálidos. <br>
+Encuentra una variedad de prendas como shorts, faldas, tops y vestidos, diseñadas para brindarte comodidad y estilo en todo momento. <br>
+Ideal para quienes buscan looks modernos y fáciles de llevar, sin perder la esencia de la moda.
+    </pre>
+
+    <h2>Productos</h2>
+    <table style="width:100%">
+      <tr>
+        <th>Producto</th>
+        <th>Imagen</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Calificación</th>
+        <th>Carrito</th>
+      </tr>
+      <tr>
+        <td>Polo Classic Fit</td>
+        <td>
+          <img id="myImage" src="modelo1.avif" width="200" height="250"><br>
+          <button onclick="sweter(1)">Imagen 1</button>
+          <button onclick="sweter(0)">Imagen 2</button>
+        </td>
+        <td>Classic Fit de piqué con logotipo</td>
+        <td>$2300</td>
+        <td>
+          <div id="rating1">
+            <span onclick="rateProduct(1, 'rating1')">⭐</span>
+            <span onclick="rateProduct(2, 'rating1')">⭐</span>
+            <span onclick="rateProduct(3, 'rating1')">⭐</span>
+            <span onclick="rateProduct(4, 'rating1')">⭐</span>
+            <span onclick="rateProduct(5, 'rating1')">⭐</span>
+          </div>
+          <p id="rating1-result">Calificación: 0</p>
+        </td>
+        <td>
+          <button onclick="addToCart('Polo Classic Fit', 2300)">Agregar al carrito</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Camisa Azul</td>
+        <td><img src="camisa.jpeg" width="200" height="250"></td>
+        <td>Camisa para hombre color azul tallas S - M - L</td>
+        <td>$850</td>
+        <td>
+          <div id="rating2">
+            <span onclick="rateProduct(1, 'rating2')">⭐</span>
+            <span onclick="rateProduct(2, 'rating2')">⭐</span>
+            <span onclick="rateProduct(3, 'rating2')">⭐</span>
+            <span onclick="rateProduct(4, 'rating2')">⭐</span>
+            <span onclick="rateProduct(5, 'rating2')">⭐</span>
+          </div>
+          <p id="rating2-result">Calificación: 0</p>
+        </td>
+        <td>
+          <button onclick="addToCart('Camisa Azul', 850)">Agregar al carrito</button>
+        </td>
+      </tr>
+    </table>
+
+    <div id="cart"></div>
+
+    <script>
+      function sweter(sw) {
+        const pic = sw === 0 ? "modelo2.avif" : "modelo1.avif";
+        document.getElementById('myImage').src = pic;
+      }
+
+      function rateProduct(rating, elementId) {
+        document.getElementById(elementId + "-result").textContent = "Calificación: " + rating;
+        const stars = document.querySelectorAll(`#${elementId} span`);
+        stars.forEach((star, index) => {
+          star.textContent = index < rating ? "⭐" : "☆";
+        });
+      }
+
+      let cartItems = [];
+
+      function addToCart(name, price) {
+        cartItems.push({ name, price });
+        updateCart();
+      }
+
+      function updateCart() {
+        const cartDiv = document.getElementById("cart");
+        cartDiv.innerHTML = "<h3>Carrito de compras:</h3>";
+        let total = 0;
+        cartItems.forEach((item, index) => {
+          cartDiv.innerHTML += `<p>${index + 1}. ${item.name} - $${item.price}</p>`;
+          total += item.price;
+        });
+        cartDiv.innerHTML += `<strong>Total: $${total}</strong>`;
+      }
+    </script>
+  </body>
+</html>
