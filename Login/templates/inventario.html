@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario</title>
+</head>
+<body>
+    <h1>Panel de Inventario</h1>
+    <form action="/agregar_producto" method="POST">
+        Nombre: <input type="text" name="nombre" required><br>
+        Descripción: <input type="text" name="descripcion" required><br>
+        Precio: <input type="number" name="precio" step="0.01" required><br>
+        Imagen (nombre del archivo): <input type="text" name="imagen" required><br>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Productos</h2>
+    <table border="1">
+        <tr><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Imagen</th><th>Eliminar</th></tr>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio }}</td>
+            <td><img src="{{ url_for('static', filename='img/' + producto.imagen) }}" width="100"></td>
+            <td><a href="/eliminar_producto/{{ producto.id }}">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

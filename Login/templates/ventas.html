@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas</title>
+</head>
+<body>
+    <h1>Lista de Ventas</h1>
+    <a href="/admin">Volver al Panel Admin</a>
+    <table border="1">
+        <tr>
+            <th>ID Venta</th>
+            <th>Producto</th>
+            <th>Cliente</th>
+            <th>Cantidad</th>
+        </tr>
+        {% for venta in ventas %}
+        <tr>
+            <td>{{ venta[0] }}</td>
+            <td>{{ venta[1] }}</td>
+            <td>{{ venta[2] }}</td>
+            <td>{{ venta[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
