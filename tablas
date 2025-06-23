@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+<body>
+
+<h2>Productos</h2>
+
+<table style="width:100%">
+    <tr>
+        <th>Titulo 1</th>
+        <th>Titulo 2</th>
+        <th>Titulo 3</th>
+      </tr>
+  <tr>
+	<th> <img src="camisa.jpeg" alt="Camisa" width="200" height="100"></th>
+    <th><img src="chamarra.jpeg" alt="Chamarra" width="200" height="100"></th>
+    <th>
+<img src="pantalon.jpeg" alt="Pantalón" width="200" height="100"></th>
+  </tr>
+  <tr>
+    <td>Camisa para hombre color azul tallas S - M - L</td>
+    <td>Chamarra para hombre colo cafe tallas S - M - L</td>
+    <td>Pantalón tipo cargo colo verde tallas S - M - L</td>
+  </tr>
+  <tr>
+    <td>$850</td>
+    <td>$1200</td>
+    <td>$900</td>
+  </tr>
+  <tr>
+	<th><img src="camisa.jpeg" alt="Camisa" width="200" height="100"></th>
+    <th><img src="chamarra.jpeg" alt="Chamarra" width="200" height="100"></th>
+    <th>
+<img src="pantalon.jpeg" alt="Pantalón" width="200" height="100"></th>
+  </tr>
+  <tr>
+    <td>Camisa para hombre color azul tallas S - M - L</td>
+    <td>Chamarra para hombre colo cafe tallas S - M - L</td>
+    <td>Pantalón tipo cargo colo verde tallas S - M - L</td>
+  </tr>
+  <tr>
+    <td>$850</td>
+    <td>$1200</td>
+    <td>$900</td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>
+
