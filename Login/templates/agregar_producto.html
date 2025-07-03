@@ -3,18 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Agregar Producto</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        button {
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #333;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Agregar Producto</h1>
-    <form method="POST">
-        <label>Nombre:</label><br>
-        <input type="text" name="nombre" required><br>
-        <label>Descripción:</label><br>
-        <input type="text" name="descripcion" required><br>
-        <label>Precio:</label><br>
-        <input type="number" name="precio" required><br><br>
-        <input type="submit" value="Agregar">
+    <form method="POST" action="/agregar_producto">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
+
+        <label>Descripción:</label>
+        <textarea name="descripcion" rows="3" required></textarea>
+
+        <label>Precio:</label>
+        <input type="number" name="precio" step="0.01" min="0" required>
+
+        <label>Stock:</label>
+        <input type="number" name="stock" min="0" value="0">
+
+        <label>Calificación (0 a 5):</label>
+        <input type="number" name="calificacion" step="0.1" min="0" max="5" value="0">
+
+        <label>Recomendaciones:</label>
+        <textarea name="recomendaciones" rows="2"></textarea>
+
+        <label>Días estimados de entrega:</label>
+        <input type="number" name="estimado_dias_entrega" min="1" value="3">
+
+        <label>Imágenes (rutas separadas por coma):</label>
+        <input type="text" name="imagenes" placeholder="img1.jpg, img2.jpg">
+
+        <button type="submit">Agregar</button>
     </form>
-    <a href="/admin">Volver</a>
+
+    <a href="/admin">Volver al panel</a>
 </body>
 </html>

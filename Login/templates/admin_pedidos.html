@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Pedidos{% endblock %}
+{% block content %}
+<h2>Pedidos Recientes</h2>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Cliente</th><th>Total</th><th>Estatus</th><th>Fecha</th>
+    </tr>
+    {% for pedido in pedidos %}
+    <tr>
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.username }}</td>
+        <td>${{ pedido.total }}</td>
+        <td>{{ pedido.estatus }}</td>
+        <td>{{ pedido.fecha_compra }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

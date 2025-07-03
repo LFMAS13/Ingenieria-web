@@ -1,34 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Productos</title>
-</head>
-<body>
-    <h1>Bienvenido, Cliente</h1>
-    <a href="/ver_carrito">Ver Carrito</a>
-    <h2>Lista de Productos</h2>
-    <table border="1">
-        <tr>
-            <th>Nombre</th>
-            <th>Imagen</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Acción</th>
-        </tr>
-        {% for producto in productos %}
-        <tr>
-            <td>{{ producto['nombre'] }}</td>
-            <td><img src="{{ url_for('static', filename='img/' + producto['imagen']) }}" width="150" height="150"></td>
-            <td>{{ producto['descripcion'] }}</td>
-            <td>${{ producto['precio'] }}</td>
-            <td>
-                <form action="{{ url_for('agregar_carrito', id=producto['id']) }}" method="post">
-                    <button type="submit">Agregar al carrito</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Zona de Cliente{% endblock %}
+
+{% block content %}
+<h2>Bienvenido, {{ session.username }}</h2>
+
+<h3>Productos disponibles</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% for producto in productos %}
+    <div style="border: 1px solid #ccc; padding: 15px; width: 250px;">
+        <h4>{{ producto.nombre }}</h4>
+        {% if producto.imagen %}
+            <img src="{{ url_for('static', filename='img/' + producto.imagen) }}" alt="Imagen de {{ producto.nombre }}" style="width: 100%; height: auto;">
+        {% else %}
+            <img src="{{ url_for('static', filename='img/default.jpg') }}" alt="Sin imagen" style="width: 100%; height: auto;">
+        {% endif %}
+        <p>{{ producto.descripcion }}</p>
+        <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+        <form method="POST" action="{{ url_for('agregar_carrito', id=producto.id) }}">
+            <button type="submit">Agregar al carrito</button>
+        </form>
+        <a href="{{ url_for('calificar', producto_id=producto.id) }}">Calificar</a>
+    </div>
+    {% endfor %}
+</div>
+
+<hr>
+
+<a href="{{ url_for('ver_carrito') }}">🛒 Ver Carrito</a> |
+<a href="{{ url_for('direcciones') }}">📍 Direcciones</a> |
+<a href="{{ url_for('tarjetas') }}">💳 Tarjetas</a> |
+<a href="{{ url_for('recomendaciones') }}">📝 Dejar Recomendación</a> |
+<a href="{{ url_for('logout') }}">🚪 Cerrar Sesión</a>
+
+{% endblock %}

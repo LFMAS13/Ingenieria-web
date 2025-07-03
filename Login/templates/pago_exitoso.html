@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Pago Exitoso</title>
-</head>
-<body>
-    <h1>¡Gracias por tu compra!</h1>
-    <a href="/cliente">Volver a la tienda</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Pago Exitoso{% endblock %}
+{% block content %}
+<h2>¡Gracias por tu compra!</h2>
+<p>Tu pago se ha realizado correctamente.</p>
+<a href="/cliente">Volver a la tienda</a>
+{% endblock %}

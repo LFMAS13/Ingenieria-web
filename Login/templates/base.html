@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mi Tienda{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            border: 1px solid transparent;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            border-color: #333;
+            background-color: #333;
+            color: #fff;
+        }
+
+        main {
+            padding: 2rem;
+            min-height: 75vh;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Tienda en Línea</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                {% if session.get('rol') == 'admin' %}
+                    <li><a href="{{ url_for('admin') }}">Panel Admin</a></li>
+                    <a href="{{ url_for('admin_pedidos') }}">Pedidos</a>
+                {% elif session.get('rol') == 'inventario' %}
+                    <li><a href="{{ url_for('inventario') }}">Panel Inventario</a></li>
+                {% elif session.get('rol') == 'cliente' %}
+                    <li><a href="{{ url_for('cliente') }}">Tienda</a></li>
+                    <li><a href="{{ url_for('ver_carrito') }}">Carrito</a></li>
+                {% endif %}
+
+                {% if session.get('rol') %}
+                    <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('registro') }}">Registro</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 Mi Tienda. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

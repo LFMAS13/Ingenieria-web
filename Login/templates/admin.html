@@ -1,32 +1,47 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin - Productos</title>
-</head>
-<body>
-    <h1>Panel de Administrador</h1>
-    <h2>Agregar Producto</h2>
-    <form action="/agregar_producto" method="POST">
-        Nombre: <input type="text" name="nombre" required><br>
-        Descripción: <input type="text" name="descripcion" required><br>
-        Precio: <input type="number" name="precio" step="0.01" required><br>
-        Imagen (nombre del archivo): <input type="text" name="imagen" required><br>
-        <button type="submit">Agregar</button>
-    </form>
+{% extends 'base.html' %}
+{% block title %}Panel Admin{% endblock %}
+{% block content %}
+<h2>Gestión de Productos</h2>
 
-    <h2>Productos Existentes</h2>
-    <table border="1">
-        <tr><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Imagen</th><th>Eliminar</th></tr>
-        {% for producto in productos %}
-        <tr>
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.descripcion }}</td>
-            <td>{{ producto.precio }}</td>
-            <td><img src="{{ url_for('static', filename='img/' + producto.imagen) }}" width="100"></td>
-            <td><a href="/eliminar_producto/{{ producto.id }}">Eliminar</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+<form method="POST" action="/agregar_producto">
+    <label>Nombre:</label><br>
+    <input type="text" name="nombre" required><br>
+
+    <label>Descripción:</label><br>
+    <input type="text" name="descripcion" required><br>
+
+    <label>Precio:</label><br>
+    <input type="number" name="precio" step="0.01" required><br>
+
+    <label>Imagen:</label><br>
+    <input type="text" name="imagen" required><br><br>
+
+    <button type="submit">Agregar Producto</button>
+</form>
+
+<h3>Lista de Productos</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th>Eliminar</th>
+    </tr>
+    {% for producto in productos %}
+    <tr>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>${{ producto.precio }}</td>
+        <td>
+            {% if producto.imagen %}
+                <img src="{{ url_for('static', filename='img/' + producto.imagen) }}" width="80">
+            {% else %}
+                <span>No hay imagen</span>
+            {% endif %}
+        </td>
+        <td><a href="/eliminar_producto/{{ producto.id }}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
