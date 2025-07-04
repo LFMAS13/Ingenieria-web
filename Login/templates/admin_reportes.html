@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Reporte de Ventas{% endblock %}
+
+{% block content %}
+<nav style="margin-bottom:1rem;">
+  <a href="{{ url_for('admin') }}">Productos</a> |
+  <a href="{{ url_for('admin_pedidos') }}">Pedidos</a> |
+  <strong>Reportes</strong>
+</nav>
+
+<h2>Ingresos por día (últ. 30)</h2>
+<table border="1" cellpadding="6">
+  <tr><th>Fecha</th><th>Ingresos</th></tr>
+  {% for v in ventas_dia %}
+  <tr><td>{{ v.fecha }}</td><td>${{ '%.2f'|format(v.ingresos) }}</td></tr>
+  {% endfor %}
+</table>
+
+<h2 style="margin-top:2rem;">Ingresos / Top producto por mes</h2>
+<table border="1" cellpadding="6">
+  <tr><th>Mes</th><th>Ingresos</th><th>Producto más vendido</th><th>Unidades</th></tr>
+  {% for m in ingresos_mes %}
+  <tr>
+    <td>{{ m.mes }}</td>
+    <td>${{ '%.2f'|format(m.ingresos) }}</td>
+    <td>{{ top_mes[m.mes].nombre }}</td>
+    <td>{{ top_mes[m.mes].unidades }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
