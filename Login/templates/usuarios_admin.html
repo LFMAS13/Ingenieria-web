@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Usuarios{% endblock %}
+
+{% block content %}
+<nav style="margin-bottom:1rem;">
+  <a href="{{ url_for('admin') }}">Productos</a> |
+  <a href="{{ url_for('admin_usuarios') }}"><strong>Usuarios</strong></a> |
+  <a href="{{ url_for('admin_pedidos') }}">Pedidos</a> |
+  <a href="{{ url_for('admin_reportes') }}">Reportes</a>
+</nav>
+
+<h2>Alta rápida de usuario</h2>
+<form method="POST" style="margin-bottom:2rem;">
+  Usuario:   <input name="username" required><br>
+  Contraseña:<input name="password" type="password" required><br>
+  Rol:
+  <select name="rol">
+    <option value="admin">admin</option>
+    <option value="inventario">inventario</option>
+    <option value="cliente">cliente</option>
+  </select><br><br>
+  <button type="submit">Crear</button>
+</form>
+
+<h3>Lista de usuarios</h3>
+<table border="1" cellpadding="6">
+  <tr><th>ID</th><th>Usuario</th><th>Rol</th><th>Editar</th><th>Eliminar</th></tr>
+  {% for u in usuarios %}
+  <tr>
+    <td>{{ u.id }}</td>
+    <td>{{ u.username }}</td>
+    <td>{{ u.rol }}</td>
+    <td><a href="{{ url_for('editar_usuario', uid=u.id) }}">Editar</a></td>
+    <td>
+      <form method="POST" action="{{ url_for('eliminar_usuario', uid=u.id) }}"
+            onsubmit="return confirm('¿Eliminar usuario?');">
+        <button type="submit">Eliminar</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
