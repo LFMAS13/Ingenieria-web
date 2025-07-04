@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Mis direcciones{% endblock %}
+{% block content %}
+<h2>Direcciones de envío</h2>
+
+<form method="POST" style="margin-bottom:1.5rem;">
+  <input name="direccion" placeholder="Calle, número..." required><br>
+  <input name="ciudad"    placeholder="Ciudad" required><br>
+  <input name="estado"    placeholder="Estado" required><br>
+  <input name="codigo_postal" placeholder="CP" required><br>
+  <button type="submit">Agregar</button>
+</form>
+
+<table border="1" cellpadding="6">
+  <tr><th>Dirección</th><th>Ciudad</th><th>Estado</th><th>CP</th><th>Eliminar</th></tr>
+  {% for d in direcciones %}
+  <tr>
+    <td>{{ d.direccion }}</td>
+    <td>{{ d.ciudad }}</td>
+    <td>{{ d.estado }}</td>
+    <td>{{ d.codigo_postal }}</td>
+    <td>
+      <form action="{{ url_for('eliminar_direccion', did=d.id) }}" method="POST"
+            onsubmit="return confirm('¿Eliminar dirección?');">
+        <button type="submit">🗑️</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="{{ url_for('ver_carrito') }}">⬅️ Volver al carrito</a>
+{% endblock %}
