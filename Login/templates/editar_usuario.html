@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Editar usuario{% endblock %}
+
+{% block content %}
+<h2>Editar usuario #{{ usuario.id }}</h2>
+<form method="POST" style="max-width:400px;">
+  Usuario:<br>
+  <input name="username" value="{{ usuario.username }}" required><br><br>
+
+  Rol:<br>
+  <select name="rol">
+    {% for r in ['admin','inventario','cliente'] %}
+      <option value="{{ r }}" {% if usuario.rol==r %}selected{% endif %}>{{ r }}</option>
+    {% endfor %}
+  </select><br><br>
+
+  Nueva contraseña (dejar en blanco para no cambiar):<br>
+  <input name="password" type="password"><br><br>
+
+  <button type="submit">Guardar</button>
+  <a href="{{ url_for('admin_usuarios') }}">Cancelar</a>
+</form>
+{% endblock %}
