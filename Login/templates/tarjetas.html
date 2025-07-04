@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Mis tarjetas{% endblock %}
+{% block content %}
+<h2>Tarjetas de crédito</h2>
+
+<form method="POST" style="margin-bottom:1.5rem;">
+  <input name="numero" placeholder="Número 16 dígitos" required><br>
+  <input name="nombre_titular" placeholder="Nombre del titular" required><br>
+  <input name="fecha_expiracion" placeholder="MM/AA" required><br>
+  <input name="cvv" placeholder="CVV" required><br>
+  <button type="submit">Agregar</button>
+</form>
+
+<table border="1" cellpadding="6">
+  <tr><th>••••</th><th>Titular</th><th>Expira</th><th>Eliminar</th></tr>
+  {% for t in tarjetas %}
+  <tr>
+    <td>•••• {{ t.numero_tarjeta[-4:] }}</td>
+    <td>{{ t.nombre_titular }}</td>
+    <td>{{ t.fecha_expiracion }}</td>
+    <td>
+      <form action="{{ url_for('eliminar_tarjeta', tid=t.id) }}" method="POST"
+            onsubmit="return confirm('¿Eliminar tarjeta?');">
+        <button type="submit">🗑️</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="{{ url_for('ver_carrito') }}">⬅️ Volver al carrito</a>
+{% endblock %}
